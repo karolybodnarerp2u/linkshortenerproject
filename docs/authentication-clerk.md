@@ -10,6 +10,38 @@
 - ❌ Never use any other auth providers (NextAuth, Auth0, Firebase Auth, etc.)
 - ✅ Always use Clerk for all authentication and user management
 
+## Setup
+
+### ClerkProvider Configuration
+
+The entire app is wrapped in `ClerkProvider` in the root layout with the shadcn theme:
+
+```typescript
+// app/layout.tsx
+import { ClerkProvider } from '@clerk/nextjs';
+import { shadcn } from '@clerk/themes';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <ClerkProvider
+          appearance={{
+            baseTheme: shadcn,
+          }}
+        >
+          {children}
+        </ClerkProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+**Note:** The `baseTheme: shadcn` configuration ensures that Clerk UI components (SignIn, SignUp, UserButton, etc.) match the shadcn/ui design system used throughout the application.
+
+**Package Required:** `npm install @clerk/themes`
+
 ## Route Protection
 
 ### Protected Routes
