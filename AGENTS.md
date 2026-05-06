@@ -112,7 +112,16 @@ All detailed agent instructions are located in the `/docs` directory. **You MUST
 
 **This project uses Next.js 16.2.4 with breaking changes from earlier versions.** APIs, conventions, and file structure may differ significantly from your training data. Always verify against current documentation before writing code.
 
-### 🔒 Security Requirements
+### � NEVER Use middleware.ts
+
+**CRITICAL:** `middleware.ts` is **DEPRECATED** in Next.js 16.2.4 and later versions. 
+
+- ❌ **DO NOT** create or use `middleware.ts` files
+- ✅ **DO** use `proxy.ts` instead for middleware functionality
+- This is a breaking change from earlier Next.js versions
+- Your training data may contain outdated middleware patterns
+
+### �🔒 Security Requirements
 
 1. **Always authenticate server-side** in API routes and Server Components
 2. **Never expose sensitive data** to the client
@@ -198,6 +207,7 @@ export async function POST(request: Request) {
 - ❌ Write code without reading the relevant documentation first
 - ❌ Assume you know the pattern from training data
 - ❌ Use outdated Next.js patterns (this is v16.2.4)
+- ❌ Create or use `middleware.ts` files (deprecated - use `proxy.ts` instead)
 - ❌ Create custom UI components (must use shadcn/ui)
 - ❌ Skip reading docs because the task seems "simple"
 

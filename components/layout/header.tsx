@@ -28,10 +28,10 @@ export function Header() {
             </>
           ) : (
             <>
-              <SignInButton mode="modal">
+              <SignInButton mode="modal" fallbackRedirectUrl="/dashboard">
                 <Button variant="ghost">Sign In</Button>
               </SignInButton>
-              <SignUpButton mode="modal">
+              <SignUpButton mode="modal" fallbackRedirectUrl="/dashboard">
                 <Button>Sign Up</Button>
               </SignUpButton>
             </>
