@@ -1,6 +1,6 @@
 'use client';
 
-import { SignInButton, SignUpButton } from '@clerk/nextjs';
+import { SignUpButton } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 
 export function HeroCTA(): React.ReactElement {
@@ -11,11 +11,6 @@ export function HeroCTA(): React.ReactElement {
           Get Started Free
         </Button>
       </SignUpButton>
-      <SignInButton mode="modal">
-        <Button variant="outline" size="lg" className="h-11 px-8 text-base">
-          Sign In
-        </Button>
-      </SignInButton>
     </div>
   );
 }
