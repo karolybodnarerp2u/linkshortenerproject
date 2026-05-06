@@ -8,17 +8,22 @@ This project uses **Clerk v7.3.0** for authentication and user management.
 
 ### ClerkProvider
 
-The entire app is wrapped in `ClerkProvider` in the root layout:
+The entire app is wrapped in `ClerkProvider` in the root layout with the shadcn theme:
 
 ```typescript
 // app/layout.tsx
 import { ClerkProvider } from '@clerk/nextjs';
+import { shadcn } from '@clerk/themes';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <ClerkProvider>
+        <ClerkProvider
+          appearance={{
+            baseTheme: shadcn,
+          }}
+        >
           {children}
         </ClerkProvider>
       </body>
@@ -26,6 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 }
 ```
+
+**Note:** The `baseTheme: shadcn` configuration ensures that Clerk UI components (SignIn, SignUp, UserButton, etc.) match the shadcn/ui design system used throughout the application.
 
 ## UI Components
 
