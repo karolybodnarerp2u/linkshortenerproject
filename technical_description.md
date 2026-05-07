@@ -5,12 +5,14 @@
 Your **Link Shortener Project** uses a modern full-stack architecture combining four key tools:
 
 ### **1. Next.js (Framework)**
+
 - Serves as the full-stack JavaScript framework
 - Handles both frontend (React components) and backend (API routes)
 - Provides server-side rendering, static generation, and API capabilities
 - Used for: UI rendering, authentication middleware, database operations
 
 ### **2. Clerk (Authentication)**
+
 - Manages user authentication and authorization
 - Wraps your entire app in `ClerkProvider`
 - Provides UI components: `SignInButton`, `SignUpButton`, `UserButton`
@@ -18,6 +20,7 @@ Your **Link Shortener Project** uses a modern full-stack architecture combining 
 - Stores user identity securely (no password management needed)
 
 ### **3. Drizzle ORM (Database Layer)**
+
 - Type-safe database query builder
 - Converts JavaScript/TypeScript into SQL queries
 - Uses PostgreSQL dialect (configured in `drizzle.config.ts`)
@@ -25,6 +28,7 @@ Your **Link Shortener Project** uses a modern full-stack architecture combining 
 - Provides connection via `db` instance in `db/index.ts`
 
 ### **4. Neon (PostgreSQL Database)**
+
 - Serverless PostgreSQL database hosted in the cloud
 - Connected via `DATABASE_URL` environment variable
 - Stores all application data (users, links, etc.)
@@ -70,6 +74,7 @@ Your **Link Shortener Project** uses a modern full-stack architecture combining 
 ## User Journey & Typical Workflow
 
 ### 1. **User Authentication Flow**
+
 - User visits the app
 - Next.js middleware checks Clerk authentication status
 - If not authenticated:
@@ -80,6 +85,7 @@ Your **Link Shortener Project** uses a modern full-stack architecture combining 
 - If authenticated: User sees protected content
 
 ### 2. **Create Short Link Flow**
+
 1. **User submits form** → Browser sends POST request to `/api/shorten`
 2. **Next.js receives request** → Validates input data
 3. **Verify authentication** → Calls Clerk to confirm user identity
@@ -89,6 +95,7 @@ Your **Link Shortener Project** uses a modern full-stack architecture combining 
 7. **Display result** → React component renders the short link
 
 ### 3. **Retrieve Link Flow**
+
 1. User clicks short link or visits app
 2. Next.js API route receives request
 3. Drizzle queries Neon for matching record
@@ -99,19 +106,20 @@ Your **Link Shortener Project** uses a modern full-stack architecture combining 
 
 ## Tech Stack - Connections & Responsibilities
 
-| Tool | Purpose | Responsibility |
-|------|---------|-----------------|
-| **Next.js** | Full-stack framework | Server, routing, API endpoints, middleware |
-| **React** | UI library | Components, frontend rendering |
-| **Clerk** | Authentication service | User sign-up, sign-in, session management, protected routes |
-| **Drizzle** | ORM (Object-Relational Mapping) | Type-safe database queries, schema management |
-| **Neon** | PostgreSQL Database | Data persistence, storage |
+| Tool        | Purpose                         | Responsibility                                              |
+| ----------- | ------------------------------- | ----------------------------------------------------------- |
+| **Next.js** | Full-stack framework            | Server, routing, API endpoints, middleware                  |
+| **React**   | UI library                      | Components, frontend rendering                              |
+| **Clerk**   | Authentication service          | User sign-up, sign-in, session management, protected routes |
+| **Drizzle** | ORM (Object-Relational Mapping) | Type-safe database queries, schema management               |
+| **Neon**    | PostgreSQL Database             | Data persistence, storage                                   |
 
 ---
 
 ## How They Connect
 
 ### Connection Steps:
+
 1. **User visits app** → Next.js serves the page
 2. **Clerk checks** → Is the user logged in?
 3. **User submits data** → Next.js API route receives it
@@ -120,6 +128,7 @@ Your **Link Shortener Project** uses a modern full-stack architecture combining 
 6. **Response sent back** → User sees results
 
 ### Security & Configuration
+
 - All connections are secured via environment variables in `.env.local`
 - **CLERK_SECRET_KEY** → Server-side authentication
 - **NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY** → Client-side (public)

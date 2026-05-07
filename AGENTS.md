@@ -14,7 +14,6 @@
 - Your training data may contain **outdated patterns** that will cause errors
 - **Failing to read documentation WILL result in code that doesn't work**
 
-
 **NO EXCEPTIONS. READ THE DOCS FIRST. EVERY TIME.**
 
 ---
@@ -41,7 +40,6 @@ This directory contains comprehensive coding standards and patterns for AI agent
 **STEP 2:** Use the `read_file` tool to read the relevant `*.md` file(s)
 **STEP 3:** Review the patterns, requirements, and examples in that documentation
 **STEP 4:** Write code that follows those exact patterns
-
 
 ### Core Documentation Files
 
@@ -101,7 +99,7 @@ This directory contains comprehensive coding standards and patterns for AI agent
 
 ### � NEVER Use middleware.ts
 
-**CRITICAL:** `middleware.ts` is **DEPRECATED** in Next.js 16.2.4 and later versions. 
+**CRITICAL:** `middleware.ts` is **DEPRECATED** in Next.js 16.2.4 and later versions.
 
 - ❌ **DO NOT** create or use `middleware.ts` files
 - ✅ **DO** use `proxy.ts` instead for middleware functionality
@@ -180,7 +178,6 @@ export async function POST(request: Request) {
 ## How to Use These Instructions
 
 ### 🚨 MANDATORY WORKFLOW FOR EVERY TASK 🚨
-
 
 1. **Understand the patterns** - Review examples and requirements in the documentation
 2. **Follow the documented patterns** - Do not deviate from the established conventions

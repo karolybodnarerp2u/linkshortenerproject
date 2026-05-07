@@ -21,7 +21,14 @@ Define all database schemas in `db/schema.ts` using Drizzle's schema builder:
 ### Table Definition Pattern
 
 ```typescript
-import { pgTable, text, timestamp, varchar, integer, boolean } from 'drizzle-orm/pg-core';
+import {
+  pgTable,
+  text,
+  timestamp,
+  varchar,
+  integer,
+  boolean,
+} from 'drizzle-orm/pg-core';
 import { InferSelectModel, InferInsertModel } from 'drizzle-orm';
 
 export const links = pgTable('links', {
@@ -53,7 +60,9 @@ export const linksRelations = relations(links, ({ one, many }) => ({
 
 export const linkAnalytics = pgTable('link_analytics', {
   id: varchar('id', { length: 36 }).primaryKey(),
-  linkId: varchar('link_id', { length: 12 }).notNull().references(() => links.id, { onDelete: 'cascade' }),
+  linkId: varchar('link_id', { length: 12 })
+    .notNull()
+    .references(() => links.id, { onDelete: 'cascade' }),
   clickedAt: timestamp('clicked_at').defaultNow().notNull(),
   ipAddress: varchar('ip_address', { length: 45 }),
   userAgent: text('user_agent'),
@@ -117,10 +126,7 @@ async function getLinkByCode(shortCode: string) {
 // Find many with conditions
 async function getUserActiveLinks(userId: string) {
   return db.query.links.findMany({
-    where: and(
-      eq(links.userId, userId),
-      eq(links.isActive, true)
-    ),
+    where: and(eq(links.userId, userId), eq(links.isActive, true)),
     orderBy: [desc(links.createdAt)],
   });
 }
@@ -157,10 +163,7 @@ async function deactivateExpiredLinks() {
   return db
     .update(links)
     .set({ isActive: false })
-    .where(and(
-      eq(links.isActive, true),
-      lt(links.expiresAt, new Date())
-    ));
+    .where(and(eq(links.isActive, true), lt(links.expiresAt, new Date())));
 }
 ```
 
@@ -169,17 +172,12 @@ async function deactivateExpiredLinks() {
 ```typescript
 // Soft delete (preferred)
 async function deactivateLink(linkId: string) {
-  await db
-    .update(links)
-    .set({ isActive: false })
-    .where(eq(links.id, linkId));
+  await db.update(links).set({ isActive: false }).where(eq(links.id, linkId));
 }
 
 // Hard delete (use with caution)
 async function deleteLink(linkId: string) {
-  await db
-    .delete(links)
-    .where(eq(links.id, linkId));
+  await db.delete(links).where(eq(links.id, linkId));
 }
 ```
 
@@ -244,16 +242,16 @@ async function transferOwnership(linkId: string, newUserId: string) {
     const link = await tx.query.links.findFirst({
       where: eq(links.id, linkId),
     });
-    
+
     if (!link) {
       throw new Error('Link not found');
     }
-    
+
     await tx
       .update(links)
       .set({ userId: newUserId })
       .where(eq(links.id, linkId));
-    
+
     // Other related updates...
   });
 }
@@ -278,24 +276,24 @@ async function transferOwnership(linkId: string, newUserId: string) {
 
 ```typescript
 import {
-  eq,        // equals
-  ne,        // not equals
-  lt,        // less than
-  lte,       // less than or equal
-  gt,        // greater than
-  gte,       // greater than or equal
-  isNull,    // is null
+  eq, // equals
+  ne, // not equals
+  lt, // less than
+  lte, // less than or equal
+  gt, // greater than
+  gte, // greater than or equal
+  isNull, // is null
   isNotNull, // is not null
-  like,      // SQL LIKE
-  ilike,     // case-insensitive LIKE
-  and,       // AND condition
-  or,        // OR condition
-  not,       // NOT condition
-  inArray,   // IN array
-  notInArray,// NOT IN array
-  desc,      // descending order
-  asc,       // ascending order
-  sql,       // raw SQL
+  like, // SQL LIKE
+  ilike, // case-insensitive LIKE
+  and, // AND condition
+  or, // OR condition
+  not, // NOT condition
+  inArray, // IN array
+  notInArray, // NOT IN array
+  desc, // descending order
+  asc, // ascending order
+  sql, // raw SQL
 } from 'drizzle-orm';
 ```
 

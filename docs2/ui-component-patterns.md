@@ -127,12 +127,12 @@ import { Button } from '@/components/ui/button';
 
 export function LinkForm() {
   const [url, setUrl] = useState('');
-  
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     // Handle form submission
   }
-  
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <input

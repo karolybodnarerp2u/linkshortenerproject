@@ -24,7 +24,10 @@ export function EditLinkModal({ link }: EditLinkModalProps) {
   const [open, setOpen] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [formData, setFormData] = useState({ url: link.url, shortCode: link.shortCode });
+  const [formData, setFormData] = useState({
+    url: link.url,
+    shortCode: link.shortCode,
+  });
 
   function handleOpen() {
     setFormData({ url: link.url, shortCode: link.shortCode });
@@ -74,7 +77,9 @@ export function EditLinkModal({ link }: EditLinkModalProps) {
                 type="url"
                 placeholder="https://example.com/very/long/url"
                 value={formData.url}
-                onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, url: e.target.value })
+                }
                 disabled={isPending}
                 required
               />
@@ -86,13 +91,17 @@ export function EditLinkModal({ link }: EditLinkModalProps) {
                 type="text"
                 placeholder="my-link"
                 value={formData.shortCode}
-                onChange={(e) => setFormData({ ...formData, shortCode: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, shortCode: e.target.value })
+                }
                 disabled={isPending}
                 required
               />
             </div>
             {error && (
-              <div className="rounded-md bg-red-50 p-3 text-sm text-red-700">{error}</div>
+              <div className="rounded-md bg-red-50 p-3 text-sm text-red-700">
+                {error}
+              </div>
             )}
             <div className="flex justify-end gap-3 pt-4">
               <Button

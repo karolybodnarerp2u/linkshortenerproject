@@ -38,12 +38,14 @@ export function getUserById(id: string) {
 ### Type vs Interface
 
 **Use `type` for:**
+
 - Union types
 - Intersection types
 - Mapped types
 - Type aliases
 
 **Use `interface` for:**
+
 - Object shapes that may be extended
 - Public APIs
 - React component props
@@ -96,7 +98,11 @@ interface FormProps {
   disabled?: boolean;
 }
 
-export function Form({ onSubmit, initialValue = '', disabled = false }: FormProps) {
+export function Form({
+  onSubmit,
+  initialValue = '',
+  disabled = false,
+}: FormProps) {
   // Component logic
 }
 ```
@@ -146,7 +152,7 @@ function getDisplayName(user: User | null): string {
 // ✅ Good - with type narrowing
 function processUser(user: User | null): void {
   if (!user) return;
-  
+
   // TypeScript knows user is not null here
   console.log(user.name);
 }
@@ -199,10 +205,7 @@ const data = JSON.parse(jsonString) as UserData;
 // ✅ Better - with validation
 function isUserData(obj: unknown): obj is UserData {
   return (
-    typeof obj === 'object' &&
-    obj !== null &&
-    'id' in obj &&
-    'name' in obj
+    typeof obj === 'object' && obj !== null && 'id' in obj && 'name' in obj
   );
 }
 
@@ -239,7 +242,7 @@ Use `as const` for literal types:
 
 ```typescript
 const LINK_STATUSES = ['active', 'inactive', 'expired'] as const;
-type LinkStatus = typeof LINK_STATUSES[number]; // 'active' | 'inactive' | 'expired'
+type LinkStatus = (typeof LINK_STATUSES)[number]; // 'active' | 'inactive' | 'expired'
 
 const CONFIG = {
   maxLinks: 100,

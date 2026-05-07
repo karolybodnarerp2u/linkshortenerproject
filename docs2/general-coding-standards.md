@@ -83,13 +83,16 @@ async function fetchUserData(userId: string): Promise<User> {
 }
 
 // ✅ Good - arrow functions for inline
-const filterActiveLinks = (links: Link[]) => links.filter(link => link.isActive);
+const filterActiveLinks = (links: Link[]) =>
+  links.filter((link) => link.isActive);
 
 // ❌ Avoid - promise chains
 function fetchUserData(userId: string): Promise<User> {
-  return db.query.users.findFirst({
-    where: eq(users.id, userId),
-  }).then(user => user);
+  return db.query.users
+    .findFirst({
+      where: eq(users.id, userId),
+    })
+    .then((user) => user);
 }
 ```
 
@@ -125,7 +128,7 @@ export async function POST(request: Request) {
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' } as ErrorResponse,
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -135,7 +138,9 @@ export async function POST(request: Request) {
 
 ```typescript
 // ✅ Good - user-friendly messages
-throw new Error('Invalid URL format. Please enter a valid URL starting with http:// or https://');
+throw new Error(
+  'Invalid URL format. Please enter a valid URL starting with http:// or https://',
+);
 
 // ❌ Avoid - technical jargon
 throw new Error('RegEx validation failed on input string');
@@ -151,7 +156,9 @@ throw new Error('RegEx validation failed on input string');
 ```typescript
 // ✅ Good - explains why
 // Use SHA-256 hash to ensure unique short codes while maintaining randomness
-const hash = createHash('sha256').update(url + Date.now()).digest('hex');
+const hash = createHash('sha256')
+  .update(url + Date.now())
+  .digest('hex');
 
 // ❌ Bad - explains what (obvious from code)
 // Get the user ID from auth
@@ -201,7 +208,7 @@ function validateEnv() {
     'CLERK_SECRET_KEY',
     'CLERK_PUBLISHABLE_KEY',
   ];
-  
+
   for (const key of required) {
     if (!process.env[key]) {
       throw new Error(`Missing required environment variable: ${key}`);

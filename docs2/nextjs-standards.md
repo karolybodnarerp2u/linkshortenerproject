@@ -7,6 +7,7 @@
 ## Project Structure
 
 ### App Router Architecture
+
 - Use the `/app` directory for all routes and layouts
 - File-based routing with `page.tsx`, `layout.tsx`, `route.ts` patterns
 - Server Components by default; use `"use client"` directive only when necessary
@@ -14,12 +15,14 @@
 ### When to Use Server vs Client Components
 
 **Server Components (default):**
+
 - Data fetching and database queries
 - Accessing backend resources directly
 - Large dependencies that don't need client-side JavaScript
 - Static content and metadata
 
 **Client Components (`"use client"`):**
+
 - Event handlers (onClick, onChange, etc.)
 - Browser APIs (localStorage, window, etc.)
 - React hooks (useState, useEffect, etc.)
@@ -28,6 +31,7 @@
 ## Routing Patterns
 
 ### File Conventions
+
 ```
 app/
   page.tsx              # Home route (/)
@@ -42,12 +46,14 @@ app/
 ```
 
 ### API Routes
+
 - Use `route.ts` files for API endpoints
 - Export named functions: `GET`, `POST`, `PUT`, `DELETE`, `PATCH`
 - Return `Response` or `NextResponse` objects
 - Handle errors with try-catch and appropriate HTTP status codes
 
 **Example:**
+
 ```typescript
 import { NextResponse } from 'next/server';
 
@@ -57,7 +63,10 @@ export async function POST(request: Request) {
     // Process request
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 },
+    );
   }
 }
 ```
@@ -65,6 +74,7 @@ export async function POST(request: Request) {
 ## Data Fetching
 
 ### Server-Side Data Fetching
+
 - Fetch data directly in Server Components
 - Use `async/await` with fetch or database queries
 - No need for useEffect or useState for initial data
@@ -78,6 +88,7 @@ export default async function Page() {
 ```
 
 ### Revalidation
+
 - Use `revalidate` for time-based revalidation
 - Use `revalidatePath()` or `revalidateTag()` for on-demand revalidation
 - Configure in `fetch()` calls or route segment config
@@ -85,6 +96,7 @@ export default async function Page() {
 ## Metadata
 
 ### Static Metadata
+
 ```typescript
 import type { Metadata } from 'next';
 
@@ -95,6 +107,7 @@ export const metadata: Metadata = {
 ```
 
 ### Dynamic Metadata
+
 ```typescript
 export async function generateMetadata({ params }): Promise<Metadata> {
   return {
@@ -121,6 +134,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 ## Common Patterns
 
 ### Loading States
+
 ```typescript
 // app/loading.tsx
 export default function Loading() {
@@ -129,6 +143,7 @@ export default function Loading() {
 ```
 
 ### Error Handling
+
 ```typescript
 // app/error.tsx
 'use client';

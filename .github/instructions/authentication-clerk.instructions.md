@@ -2,7 +2,6 @@
 description: Read this before implementing or modifying any authentication in the project.
 ---
 
-
 # Authentication Standards - Clerk
 
 ## Core Authentication Rules
@@ -60,11 +59,11 @@ import { redirect } from 'next/navigation';
 
 export default async function DashboardPage() {
   const { userId } = await auth();
-  
+
   if (!userId) {
     redirect('/');
   }
-  
+
   // Dashboard content
 }
 ```
@@ -80,11 +79,11 @@ import { redirect } from 'next/navigation';
 
 export default async function HomePage() {
   const { userId } = await auth();
-  
+
   if (userId) {
     redirect('/dashboard');
   }
-  
+
   // Homepage content for unauthenticated users
 }
 ```
@@ -136,14 +135,11 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   const { userId } = await auth();
-  
+
   if (!userId) {
-    return NextResponse.json(
-      { error: 'Unauthorized' },
-      { status: 401 }
-    );
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  
+
   // Handle authenticated request
 }
 ```
@@ -175,15 +171,15 @@ import { useUser } from '@clerk/nextjs';
 
 export function UserProfile() {
   const { isSignedIn, user, isLoaded } = useUser();
-  
+
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
-  
+
   if (!isSignedIn) {
     return <div>Please sign in</div>;
   }
-  
+
   return <div>Hello, {user.firstName}!</div>;
 }
 ```

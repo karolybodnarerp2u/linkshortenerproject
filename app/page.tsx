@@ -1,7 +1,13 @@
 import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
-import { Link2, BarChart3, Zap, Shield, Globe, Copy } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Link2, Zap, Shield, Globe, Copy } from 'lucide-react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { HeroCTA } from '@/components/features/hero-cta';
 
 export default async function Home() {
@@ -17,12 +23,6 @@ export default async function Home() {
       title: 'Instant Shortening',
       description:
         'Paste any long URL and get a clean, shareable short link in seconds.',
-    },
-    {
-      icon: BarChart3,
-      title: 'Click Analytics',
-      description:
-        'Track how many times your links are clicked and monitor their performance over time.',
     },
     {
       icon: Copy,
@@ -62,11 +62,11 @@ export default async function Home() {
           <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-foreground md:text-6xl">
             Shorten links.
             <br />
-            <span className="text-muted-foreground">Track what matters.</span>
+            <span className="text-muted-foreground">Share what matters.</span>
           </h1>
           <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Turn long, unwieldy URLs into clean short links you can share anywhere.
-            Monitor performance with built-in click analytics — all from one dashboard.
+            Turn long, unwieldy URLs into clean short links you can share
+            anywhere — all from one dashboard.
           </p>
         </div>
         <HeroCTA />
@@ -102,7 +102,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }

@@ -54,12 +54,16 @@ export function DeleteLinkDialog({ link }: DeleteLinkDialogProps) {
             <DialogTitle>Delete Link</DialogTitle>
             <DialogDescription>
               Are you sure you want to delete{' '}
-              <span className="font-medium text-foreground">{link.shortCode}</span>? This action
-              cannot be undone.
+              <span className="font-medium text-foreground">
+                {link.shortCode}
+              </span>
+              ? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           {error && (
-            <div className="rounded-md bg-red-50 p-3 text-sm text-red-700">{error}</div>
+            <div className="rounded-md bg-red-50 p-3 text-sm text-red-700">
+              {error}
+            </div>
           )}
           <DialogFooter>
             <Button

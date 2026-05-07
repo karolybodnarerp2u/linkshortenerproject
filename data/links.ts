@@ -17,7 +17,7 @@ export async function getUserLinks(userId: string): Promise<Link[]> {
 export async function updateLink(
   id: string,
   userId: string,
-  data: { url: string; shortCode: string }
+  data: { url: string; shortCode: string },
 ): Promise<Link> {
   const [updated] = await db
     .update(links)
@@ -31,7 +31,9 @@ export async function deleteLink(id: string, userId: string): Promise<void> {
   await db.delete(links).where(and(eq(links.id, id), eq(links.userId, userId)));
 }
 
-export async function getLinkByShortCode(shortCode: string): Promise<Link | undefined> {
+export async function getLinkByShortCode(
+  shortCode: string,
+): Promise<Link | undefined> {
   return db.query.links.findFirst({
     where: eq(links.shortCode, shortCode),
   });

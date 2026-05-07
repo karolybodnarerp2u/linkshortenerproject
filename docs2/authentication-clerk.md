@@ -119,14 +119,14 @@ import { auth, currentUser } from '@clerk/nextjs/server';
 export default async function DashboardPage() {
   // Get auth state
   const { userId } = await auth();
-  
+
   if (!userId) {
     redirect('/sign-in');
   }
-  
+
   // Get full user object
   const user = await currentUser();
-  
+
   return (
     <div>
       <h1>Welcome, {user?.firstName}!</h1>
@@ -143,20 +143,20 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   const { userId } = await auth();
-  
+
   if (!userId) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  
+
   // Process authenticated request
   const body = await request.json();
-  
+
   // Use userId for database operations
   const link = await createLink({
     ...body,
     userId, // Associate with authenticated user
   });
-  
+
   return NextResponse.json(link);
 }
 ```
@@ -185,15 +185,15 @@ import { useUser } from '@clerk/nextjs';
 
 export function UserProfile() {
   const { isSignedIn, user, isLoaded } = useUser();
-  
+
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
-  
+
   if (!isSignedIn) {
     return <div>Please sign in</div>;
   }
-  
+
   return (
     <div>
       <h2>{user.firstName} {user.lastName}</h2>
@@ -214,15 +214,15 @@ import { useAuth } from '@clerk/nextjs';
 
 export function ProtectedComponent() {
   const { isLoaded, userId, signOut } = useAuth();
-  
+
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
-  
+
   if (!userId) {
     return <div>Unauthorized</div>;
   }
-  
+
   return (
     <div>
       <p>User ID: {userId}</p>
@@ -245,20 +245,20 @@ import { links } from '@/db/schema';
 
 export async function createUserLink(url: string) {
   const { userId } = await auth();
-  
+
   if (!userId) {
     throw new Error('Unauthorized');
   }
-  
+
   const [link] = await db
     .insert(links)
     .values({
-      userId,           // Clerk user ID
+      userId, // Clerk user ID
       originalUrl: url,
       shortCode: generateShortCode(),
     })
     .returning();
-  
+
   return link;
 }
 ```
@@ -273,11 +273,11 @@ import { eq } from 'drizzle-orm';
 
 export async function getUserLinks() {
   const { userId } = await auth();
-  
+
   if (!userId) {
     return [];
   }
-  
+
   return db.query.links.findMany({
     where: eq(links.userId, userId),
     orderBy: [desc(links.createdAt)],
@@ -297,18 +297,15 @@ import { eq, and } from 'drizzle-orm';
 
 export async function canModifyLink(linkId: string): Promise<boolean> {
   const { userId } = await auth();
-  
+
   if (!userId) {
     return false;
   }
-  
+
   const link = await db.query.links.findFirst({
-    where: and(
-      eq(links.id, linkId),
-      eq(links.userId, userId)
-    ),
+    where: and(eq(links.id, linkId), eq(links.userId, userId)),
   });
-  
+
   return !!link;
 }
 ```
@@ -318,30 +315,27 @@ export async function canModifyLink(linkId: string): Promise<boolean> {
 ```typescript
 export async function DELETE(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const { userId } = await auth();
   const { id } = await params;
-  
+
   if (!userId) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  
+
   // Verify ownership
   const link = await db.query.links.findFirst({
-    where: and(
-      eq(links.id, id),
-      eq(links.userId, userId)
-    ),
+    where: and(eq(links.id, id), eq(links.userId, userId)),
   });
-  
+
   if (!link) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
-  
+
   // Perform deletion
   await db.delete(links).where(eq(links.id, id));
-  
+
   return NextResponse.json({ success: true });
 }
 ```
@@ -385,18 +379,18 @@ export async function POST(request: Request) {
   const svixId = headerPayload.get('svix-id');
   const svixTimestamp = headerPayload.get('svix-timestamp');
   const svixSignature = headerPayload.get('svix-signature');
-  
+
   if (!svixId || !svixTimestamp || !svixSignature) {
     return new Response('Missing headers', { status: 400 });
   }
-  
+
   const payload = await request.json();
   const body = JSON.stringify(payload);
-  
+
   const webhook = new Webhook(process.env.CLERK_WEBHOOK_SECRET!);
-  
+
   let event: WebhookEvent;
-  
+
   try {
     event = webhook.verify(body, {
       'svix-id': svixId,
@@ -406,7 +400,7 @@ export async function POST(request: Request) {
   } catch (error) {
     return new Response('Invalid signature', { status: 400 });
   }
-  
+
   // Handle events
   switch (event.type) {
     case 'user.created':
@@ -419,7 +413,7 @@ export async function POST(request: Request) {
       // Delete or anonymize user data
       break;
   }
-  
+
   return new Response('OK', { status: 200 });
 }
 ```

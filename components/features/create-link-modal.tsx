@@ -51,58 +51,66 @@ export function CreateLinkModal() {
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Create a New Shortened Link</DialogTitle>
-          <DialogDescription>
-            Enter the URL you want to shorten and choose a custom short code.
-          </DialogDescription>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="url">URL</Label>
-            <Input
-              id="url"
-              type="url"
-              placeholder="https://example.com/very/long/url"
-              value={formData.url}
-              onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-              disabled={isPending}
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="shortCode">Short Code</Label>
-            <Input
-              id="shortCode"
-              type="text"
-              placeholder="my-link"
-              value={formData.shortCode}
-              onChange={(e) => setFormData({ ...formData, shortCode: e.target.value })}
-              disabled={isPending}
-              required
-            />
-          </div>
-          {error && <div className="rounded-md bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-          <div className="flex justify-end gap-3 pt-4">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setOpen(false)}
-              disabled={isPending}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="submit"
-              disabled={isPending}
-              className={cn(isPending && 'opacity-50 cursor-not-allowed')}
-            >
-              {isPending ? 'Creating...' : 'Create Link'}
-            </Button>
-          </div>
-        </form>
-      </DialogContent>
-    </Dialog>
+          <DialogHeader>
+            <DialogTitle>Create a New Shortened Link</DialogTitle>
+            <DialogDescription>
+              Enter the URL you want to shorten and choose a custom short code.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="url">URL</Label>
+              <Input
+                id="url"
+                type="url"
+                placeholder="https://example.com/very/long/url"
+                value={formData.url}
+                onChange={(e) =>
+                  setFormData({ ...formData, url: e.target.value })
+                }
+                disabled={isPending}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="shortCode">Short Code</Label>
+              <Input
+                id="shortCode"
+                type="text"
+                placeholder="my-link"
+                value={formData.shortCode}
+                onChange={(e) =>
+                  setFormData({ ...formData, shortCode: e.target.value })
+                }
+                disabled={isPending}
+                required
+              />
+            </div>
+            {error && (
+              <div className="rounded-md bg-red-50 p-3 text-sm text-red-700">
+                {error}
+              </div>
+            )}
+            <div className="flex justify-end gap-3 pt-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setOpen(false)}
+                disabled={isPending}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                disabled={isPending}
+                className={cn(isPending && 'opacity-50 cursor-not-allowed')}
+              >
+                {isPending ? 'Creating...' : 'Create Link'}
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

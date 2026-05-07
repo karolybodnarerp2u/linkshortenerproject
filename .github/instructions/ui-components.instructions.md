@@ -1,5 +1,5 @@
 ---
-description: Read this before creating or modifying UI components in the project. 
+description: Read this before creating or modifying UI components in the project.
 ---
 
 # shadcn/ui Standards
@@ -23,6 +23,7 @@ npx shadcn@latest add [component-name]
 ```
 
 Examples:
+
 ```bash
 npx shadcn@latest add button
 npx shadcn@latest add input
@@ -79,7 +80,7 @@ Use `cn()` utility for conditional classes:
 ```typescript
 import { cn } from '@/lib/utils';
 
-<Button 
+<Button
   className={cn(
     "w-full",
     isPending && "opacity-50 cursor-not-allowed"
@@ -140,6 +141,7 @@ export function CustomButton({ children }: { children: React.ReactNode }) {
 ## Common Components
 
 Available in `/components/ui/`:
+
 - `button` - All button interactions
 - `input` - Text inputs
 - `card` - Content containers
@@ -163,7 +165,7 @@ import { useState } from 'react';
 
 export function InteractiveComponent() {
   const [count, setCount] = useState(0);
-  
+
   return (
     <Button onClick={() => setCount(count + 1)}>
       Count: {count}

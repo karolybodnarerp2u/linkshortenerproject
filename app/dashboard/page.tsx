@@ -1,7 +1,13 @@
 import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import { getUserLinks } from '@/data/links';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Copy, ExternalLink } from 'lucide-react';
 import { CreateLinkModal } from '@/components/features/create-link-modal';
@@ -10,7 +16,7 @@ import { DeleteLinkDialog } from '@/components/features/delete-link-dialog';
 
 export default async function DashboardPage() {
   const { userId } = await auth();
-  
+
   if (!userId) {
     redirect('/');
   }
@@ -24,8 +30,12 @@ export default async function DashboardPage() {
           <div className="border-b pb-4">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold tracking-tight text-foreground">Dashboard</h1>
-                <p className="text-muted-foreground mt-2">Manage your shortened links</p>
+                <h1 className="text-3xl font-bold tracking-tight text-foreground">
+                  Dashboard
+                </h1>
+                <p className="text-muted-foreground mt-2">
+                  Manage your shortened links
+                </p>
               </div>
               <CreateLinkModal />
             </div>
@@ -33,7 +43,9 @@ export default async function DashboardPage() {
 
           {userLinks.length === 0 ? (
             <div className="rounded-lg border bg-card p-8 text-center">
-              <p className="text-muted-foreground">No links yet. Create your first shortened link to get started.</p>
+              <p className="text-muted-foreground">
+                No links yet. Create your first shortened link to get started.
+              </p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -42,8 +54,12 @@ export default async function DashboardPage() {
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
-                        <CardTitle className="text-lg truncate">{link.shortCode}</CardTitle>
-                        <CardDescription className="mt-1 truncate">{link.url}</CardDescription>
+                        <CardTitle className="text-lg truncate">
+                          {link.shortCode}
+                        </CardTitle>
+                        <CardDescription className="mt-1 truncate">
+                          {link.url}
+                        </CardDescription>
                       </div>
                     </div>
                   </CardHeader>

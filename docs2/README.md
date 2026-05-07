@@ -5,6 +5,7 @@ This directory contains comprehensive coding standards and patterns for the Link
 ## 📚 Documentation Files
 
 ### [general-coding-standards.md](./general-coding-standards.md)
+
 **Core principles and practices for the entire codebase**
 
 - Project overview and philosophy
@@ -22,6 +23,7 @@ This directory contains comprehensive coding standards and patterns for the Link
 ---
 
 ### [nextjs-standards.md](./nextjs-standards.md)
+
 **Next.js 16.2.4 App Router specific guidelines**
 
 - App Router architecture and file conventions
@@ -39,6 +41,7 @@ This directory contains comprehensive coding standards and patterns for the Link
 ---
 
 ### [typescript-conventions.md](./typescript-conventions.md)
+
 **TypeScript best practices and type safety guidelines**
 
 - Type definitions and annotations
@@ -55,6 +58,7 @@ This directory contains comprehensive coding standards and patterns for the Link
 ---
 
 ### [database-patterns.md](./database-patterns.md)
+
 **Drizzle ORM and Neon PostgreSQL integration**
 
 - Schema definition with Drizzle
@@ -72,6 +76,7 @@ This directory contains comprehensive coding standards and patterns for the Link
 ---
 
 ### [ui-component-patterns.md](./ui-component-patterns.md)
+
 **UI components and styling with shadcn/ui and Tailwind CSS**
 
 - shadcn/ui component usage
@@ -89,6 +94,7 @@ This directory contains comprehensive coding standards and patterns for the Link
 ---
 
 ### [authentication-clerk.md](./authentication-clerk.md)
+
 **Clerk authentication integration and patterns**
 
 - ClerkProvider setup
@@ -107,33 +113,39 @@ This directory contains comprehensive coding standards and patterns for the Link
 ## 🎯 Quick Reference by Task
 
 ### Creating a New Feature
+
 1. Read: general-coding-standards.md
 2. Read: nextjs-standards.md
 3. Read: Relevant domain documentation (UI, database, or auth)
 
 ### Building a New Page
+
 1. Read: nextjs-standards.md (App Router conventions)
 2. Read: typescript-conventions.md (Component typing)
 3. Read: ui-component-patterns.md (Component structure)
 4. Read: authentication-clerk.md (If protected)
 
 ### Creating an API Route
+
 1. Read: nextjs-standards.md (API route patterns)
 2. Read: authentication-clerk.md (Server-side auth)
 3. Read: database-patterns.md (Database operations)
 4. Read: typescript-conventions.md (Type safety)
 
 ### Working with Database
+
 1. Read: database-patterns.md (Drizzle ORM usage)
 2. Read: typescript-conventions.md (Type inference)
 3. Read: authentication-clerk.md (Associating with users)
 
 ### Styling Components
+
 1. Read: ui-component-patterns.md (Tailwind and shadcn/ui)
 2. Read: general-coding-standards.md (Component structure)
 3. Read: typescript-conventions.md (Props typing)
 
 ### Implementing Authentication
+
 1. Read: authentication-clerk.md (Clerk integration)
 2. Read: nextjs-standards.md (Middleware setup)
 3. Read: database-patterns.md (User data storage)
@@ -143,22 +155,28 @@ This directory contains comprehensive coding standards and patterns for the Link
 ## 🔍 Common Scenarios
 
 ### "How do I protect a page?"
+
 → [authentication-clerk.md](./authentication-clerk.md) - Route Protection section
 
 ### "Should this be a Server or Client Component?"
+
 → [nextjs-standards.md](./nextjs-standards.md) - Server vs Client Components section
 
 ### "How do I query the database?"
+
 → [database-patterns.md](./database-patterns.md) - Query Patterns section
 
 ### "What button variant should I use?"
+
 → [ui-component-patterns.md](./ui-component-patterns.md) - Button Component section
 
 ### "How do I handle errors in API routes?"
+
 → [nextjs-standards.md](./nextjs-standards.md) - API Routes section  
 → [general-coding-standards.md](./general-coding-standards.md) - Error Handling section
 
 ### "How do I get the current user?"
+
 → [authentication-clerk.md](./authentication-clerk.md) - Server-Side Authentication section
 
 ---

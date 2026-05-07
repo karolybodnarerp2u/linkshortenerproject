@@ -14,13 +14,16 @@ const createLinkSchema = z.object({
     .string()
     .min(3, 'Short code must be at least 3 characters')
     .max(10, 'Short code must be at most 10 characters')
-    .regex(/^[a-zA-Z0-9_-]+$/, 'Short code can only contain letters, numbers, underscores, and hyphens'),
+    .regex(
+      /^[a-zA-Z0-9_-]+$/,
+      'Short code can only contain letters, numbers, underscores, and hyphens',
+    ),
 });
 
 type CreateLinkInput = z.infer<typeof createLinkSchema>;
 
 export async function createLinkAction(
-  input: CreateLinkInput
+  input: CreateLinkInput,
 ): Promise<{ success: true; data?: { id: string } } | { error: string }> {
   const { userId } = await auth();
 
@@ -68,13 +71,16 @@ const updateLinkSchema = z.object({
     .string()
     .min(3, 'Short code must be at least 3 characters')
     .max(10, 'Short code must be at most 10 characters')
-    .regex(/^[a-zA-Z0-9_-]+$/, 'Short code can only contain letters, numbers, underscores, and hyphens'),
+    .regex(
+      /^[a-zA-Z0-9_-]+$/,
+      'Short code can only contain letters, numbers, underscores, and hyphens',
+    ),
 });
 
 type UpdateLinkInput = z.infer<typeof updateLinkSchema>;
 
 export async function updateLinkAction(
-  input: UpdateLinkInput
+  input: UpdateLinkInput,
 ): Promise<{ success: true } | { error: string }> {
   const { userId } = await auth();
   if (!userId) return { error: 'Unauthorized' };
@@ -88,7 +94,10 @@ export async function updateLinkAction(
   try {
     const existing = await db.query.links.findFirst({
       where: (links, { eq, and, ne }) =>
-        and(eq(links.shortCode, parsed.data.shortCode), ne(links.id, parsed.data.id)),
+        and(
+          eq(links.shortCode, parsed.data.shortCode),
+          ne(links.id, parsed.data.id),
+        ),
     });
 
     if (existing) {
@@ -115,7 +124,7 @@ const deleteLinkSchema = z.object({
 type DeleteLinkInput = z.infer<typeof deleteLinkSchema>;
 
 export async function deleteLinkAction(
-  input: DeleteLinkInput
+  input: DeleteLinkInput,
 ): Promise<{ success: true } | { error: string }> {
   const { userId } = await auth();
   if (!userId) return { error: 'Unauthorized' };
