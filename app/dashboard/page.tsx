@@ -4,6 +4,9 @@ import { getUserLinks } from '@/data/links';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Copy, ExternalLink } from 'lucide-react';
+import { CreateLinkModal } from '@/components/features/create-link-modal';
+import { EditLinkModal } from '@/components/features/edit-link-modal';
+import { DeleteLinkDialog } from '@/components/features/delete-link-dialog';
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -19,8 +22,13 @@ export default async function DashboardPage() {
       <main className="container mx-auto py-8 px-4 md:px-6">
         <div className="space-y-6">
           <div className="border-b pb-4">
-            <h1 className="text-3xl font-bold tracking-tight text-foreground">Dashboard</h1>
-            <p className="text-muted-foreground mt-2">Manage your shortened links</p>
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold tracking-tight text-foreground">Dashboard</h1>
+                <p className="text-muted-foreground mt-2">Manage your shortened links</p>
+              </div>
+              <CreateLinkModal />
+            </div>
           </div>
 
           {userLinks.length === 0 ? (
@@ -53,6 +61,8 @@ export default async function DashboardPage() {
                           <ExternalLink className="mr-2 h-4 w-4" />
                           Visit
                         </Button>
+                        <EditLinkModal link={link} />
+                        <DeleteLinkDialog link={link} />
                       </div>
                     </div>
                   </CardContent>

@@ -1,3 +1,8 @@
+---
+description: Read this before implementing or modifying any authentication in the project.
+---
+
+
 # Authentication Standards - Clerk
 
 ## Core Authentication Rules

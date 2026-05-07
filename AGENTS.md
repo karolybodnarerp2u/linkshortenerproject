@@ -5,25 +5,15 @@
 **BEFORE GENERATING ANY CODE, YOU MUST:**
 
 1. **IDENTIFY** which domain(s) your task involves (UI, database, authentication, Next.js features, etc.)
-2. **READ** the corresponding documentation file(s) in `/docs/` directory
-3. **UNDERSTAND** the patterns, conventions, and requirements specific to that domain
-4. **ONLY THEN** proceed to write code following those documented standards
+2. **UNDERSTAND** the patterns, conventions, and requirements specific to that domain
+3. **ONLY THEN** proceed to write code following those documented standards
 
 ### Why This Is Non-Negotiable:
 
 - This project uses **Next.js 16.2.4** with breaking changes from earlier versions
 - Your training data may contain **outdated patterns** that will cause errors
-- The `/docs/` files contain **project-specific conventions** not found elsewhere
 - **Failing to read documentation WILL result in code that doesn't work**
 
-### Documentation Files You MUST Consult:
-
-- **UI/Components?** → Read [docs/shadcn-ui-standards.md](docs/shadcn-ui-standards.md) FIRST
-- **Database?** → Read [docs/database-patterns.md](docs/database-patterns.md) FIRST  
-- **Authentication?** → Read [docs/authentication-clerk.md](docs/authentication-clerk.md) FIRST
-- **Next.js features?** → Read [docs/nextjs-standards.md](docs/nextjs-standards.md) FIRST
-- **TypeScript?** → Read [docs/typescript-conventions.md](docs/typescript-conventions.md) FIRST
-- **General patterns?** → Read [docs/general-coding-standards.md](docs/general-coding-standards.md) FIRST
 
 **NO EXCEPTIONS. READ THE DOCS FIRST. EVERY TIME.**
 
@@ -48,17 +38,14 @@ This directory contains comprehensive coding standards and patterns for AI agent
 ### 🔴 MANDATORY WORKFLOW 🔴
 
 **STEP 1:** Identify what you're working on (UI? Database? Auth? API routes?)
-**STEP 2:** Use the `read_file` tool to read the relevant `/docs/*.md` file(s)
+**STEP 2:** Use the `read_file` tool to read the relevant `*.md` file(s)
 **STEP 3:** Review the patterns, requirements, and examples in that documentation
 **STEP 4:** Write code that follows those exact patterns
 
-**DO NOT SKIP STEP 2. DO NOT WRITE CODE FROM MEMORY OR ASSUMPTIONS.**
-
-All detailed agent instructions are located in the `/docs` directory. **You MUST read and follow the relevant documentation before writing ANY code.**
 
 ### Core Documentation Files
 
-1. **[General Coding Standards](docs/general-coding-standards.md)**
+1. **[General Coding Standards](general-coding-standards.md)**
    - Project overview and principles
    - Code organization and file naming
    - Error handling patterns
@@ -66,7 +53,7 @@ All detailed agent instructions are located in the `/docs` directory. **You MUST
    - Security best practices
    - Git commit conventions
 
-2. **[Next.js Coding Standards](docs/nextjs-standards.md)**
+2. **[Next.js Coding Standards](nextjs-standards.md)**
    - App Router architecture
    - Server vs Client Components
    - Routing and API routes
@@ -74,7 +61,7 @@ All detailed agent instructions are located in the `/docs` directory. **You MUST
    - Metadata and SEO
    - Navigation and redirects
 
-3. **[TypeScript Conventions](docs/typescript-conventions.md)**
+3. **[TypeScript Conventions](typescript-conventions.md)**
    - Type definitions and annotations
    - Import aliases (`@/` path)
    - React component typing
@@ -82,7 +69,7 @@ All detailed agent instructions are located in the `/docs` directory. **You MUST
    - Type guards and null handling
    - Generic types
 
-4. **[Database & Drizzle ORM Patterns](docs/database-patterns.md)**
+4. **[Database & Drizzle ORM Patterns](database-patterns.md)**
    - Schema definition
    - CRUD operations
    - Relationships and joins
@@ -90,7 +77,7 @@ All detailed agent instructions are located in the `/docs` directory. **You MUST
    - Migrations
    - Query optimization
 
-5. **[shadcn/ui Standards](docs/shadcn-ui-standards.md)** ⚠️ CRITICAL
+5. **[shadcn/ui Standards](shadcn-ui-standards.md)** ⚠️ CRITICAL
    - ALL UI elements MUST use shadcn/ui components
    - NO custom UI components allowed
    - Adding new shadcn components
@@ -98,7 +85,7 @@ All detailed agent instructions are located in the `/docs` directory. **You MUST
    - Composition patterns
    - Server vs Client components
 
-6. **[Authentication & Clerk](docs/authentication-clerk.md)**
+6. **[Authentication & Clerk](authentication-clerk.md)**
    - Clerk v7.3.0 is the ONLY auth method
    - Protected route patterns (/dashboard)
    - Homepage redirect for authenticated users
@@ -162,7 +149,6 @@ All detailed agent instructions are located in the `/docs` directory. **You MUST
 - **API Routes:** `/app/api/`
 - **Database:** `/db/schema.ts`, `/db/index.ts`
 - **Utilities:** `/lib/`
-- **Documentation:** `/docs/`
 
 ### Common Patterns
 
@@ -195,12 +181,12 @@ export async function POST(request: Request) {
 
 ### 🚨 MANDATORY WORKFLOW FOR EVERY TASK 🚨
 
-1. **READ THE RELEVANT DOCUMENTATION FIRST** - Use `read_file` to read the appropriate `/docs/*.md` file(s) before writing ANY code
-2. **Understand the patterns** - Review examples and requirements in the documentation
-3. **Follow the documented patterns** - Do not deviate from the established conventions
-4. **Consult multiple guides** when working across domains (e.g., API route with database = read both docs)
-5. **Prioritize security** - Always follow authentication and data validation patterns from the docs
-6. **Test thoroughly** - Consider edge cases, loading states, and error scenarios
+
+1. **Understand the patterns** - Review examples and requirements in the documentation
+2. **Follow the documented patterns** - Do not deviate from the established conventions
+3. **Consult multiple guides** when working across domains (e.g., API route with database = read both docs)
+4. **Prioritize security** - Always follow authentication and data validation patterns from the docs
+5. **Test thoroughly** - Consider edge cases, loading states, and error scenarios
 
 ### ⛔ NEVER DO THESE:
 
@@ -225,12 +211,9 @@ export async function POST(request: Request) {
 
 **EVERY time you are asked to write code:**
 
-1. \u2705 FIRST: Read the relevant `/docs/*.md` file(s) with `read_file`
-2. \u2705 THEN: Write code following those documented patterns
-3. \u2705 VERIFY: Your code matches the examples and conventions in the docs
+1. \u2705 THEN: Write code following those documented patterns
+2. \u2705 VERIFY: Your code matches the examples and conventions in the docs
 
 **This is not optional. This is mandatory. Every. Single. Time.**
 
 ---
-
-**For detailed information on any topic, consult the specific documentation file in `/docs/`.**
