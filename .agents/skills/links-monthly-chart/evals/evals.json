@@ -1,0 +1,23 @@
+{
+  "skill_name": "links-monthly-chart",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Generate the monthly links chart for the past year and save it to the project root.",
+      "expected_output": "A PNG file named links_monthly_chart.png is created in the project root. It is a bar chart with 12 bars (one per month) labelled with abbreviated month names, a y-axis showing link counts, a title, and axis labels.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "I want to see how many links were created each month this past year. Can you pull that data from the database and make a chart?",
+      "expected_output": "The skill reads DATABASE_URL from .env or .env.local, runs the plotting script, and saves a bar chart PNG. The assistant reports the output file path.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Show me a bar chart of link creation activity over the last 12 months. Save the chart as my_links_chart.png in the tmp folder.",
+      "expected_output": "The skill produces tmp/my_links_chart.png. The chart has 12 monthly bars with counts, proper axis labels, a title, and no rendering errors.",
+      "files": []
+    }
+  ]
+}

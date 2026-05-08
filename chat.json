@@ -231,12 +231,8 @@
         "name": "GitHubCopilot",
         "fullName": "GitHub Copilot",
         "isDefault": true,
-        "locations": [
-          "panel"
-        ],
-        "modes": [
-          "ask"
-        ],
+        "locations": ["panel"],
+        "modes": ["ask"],
         "slashCommands": [
           {
             "name": "explain",
@@ -249,9 +245,7 @@
               {
                 "category": "create_tests",
                 "description": "The user wants to generate unit tests.",
-                "examples": [
-                  "Generate tests for my selection using pytest."
-                ]
+                "examples": ["Generate tests for my selection using pytest."]
               }
             ]
           },
@@ -285,9 +279,7 @@
               {
                 "category": "create_jupyter_notebook",
                 "description": "The user wants to create a new Jupyter notebook in Visual Studio Code.",
-                "examples": [
-                  "Create a notebook to analyze this CSV file."
-                ]
+                "examples": ["Create a notebook to analyze this CSV file."]
               }
             ]
           },
@@ -300,9 +292,7 @@
               {
                 "category": "set_up_tests",
                 "description": "The user wants to configure project test setup, framework, or test runner. The user does not want to fix their existing tests.",
-                "examples": [
-                  "Set up tests for this project."
-                ]
+                "examples": ["Set up tests for this project."]
               }
             ]
           }
@@ -311,23 +301,17 @@
           {
             "category": "generate_code_sample",
             "description": "The user wants to generate code snippets without referencing the contents of the current workspace. This category does not include generating entire projects.",
-            "examples": [
-              "Write an example of computing a SHA256 hash."
-            ]
+            "examples": ["Write an example of computing a SHA256 hash."]
           },
           {
             "category": "add_feature_to_file",
             "description": "The user wants to change code in a file that is provided in their request, without referencing the contents of the current workspace. This category does not include generating entire projects.",
-            "examples": [
-              "Add a refresh button to the table widget."
-            ]
+            "examples": ["Add a refresh button to the table widget."]
           },
           {
             "category": "question_about_specific_files",
             "description": "The user has a question about a specific file or code snippet that they have provided as part of their query, and the question does not require additional workspace context to answer.",
-            "examples": [
-              "What does this file do?"
-            ]
+            "examples": ["What does this file do?"]
           }
         ]
       },
@@ -749,12 +733,8 @@
         "name": "GitHubCopilot",
         "fullName": "GitHub Copilot",
         "isDefault": true,
-        "locations": [
-          "panel"
-        ],
-        "modes": [
-          "ask"
-        ],
+        "locations": ["panel"],
+        "modes": ["ask"],
         "slashCommands": [
           {
             "name": "explain",
@@ -767,9 +747,7 @@
               {
                 "category": "create_tests",
                 "description": "The user wants to generate unit tests.",
-                "examples": [
-                  "Generate tests for my selection using pytest."
-                ]
+                "examples": ["Generate tests for my selection using pytest."]
               }
             ]
           },
@@ -803,9 +781,7 @@
               {
                 "category": "create_jupyter_notebook",
                 "description": "The user wants to create a new Jupyter notebook in Visual Studio Code.",
-                "examples": [
-                  "Create a notebook to analyze this CSV file."
-                ]
+                "examples": ["Create a notebook to analyze this CSV file."]
               }
             ]
           },
@@ -818,9 +794,7 @@
               {
                 "category": "set_up_tests",
                 "description": "The user wants to configure project test setup, framework, or test runner. The user does not want to fix their existing tests.",
-                "examples": [
-                  "Set up tests for this project."
-                ]
+                "examples": ["Set up tests for this project."]
               }
             ]
           }
@@ -829,23 +803,17 @@
           {
             "category": "generate_code_sample",
             "description": "The user wants to generate code snippets without referencing the contents of the current workspace. This category does not include generating entire projects.",
-            "examples": [
-              "Write an example of computing a SHA256 hash."
-            ]
+            "examples": ["Write an example of computing a SHA256 hash."]
           },
           {
             "category": "add_feature_to_file",
             "description": "The user wants to change code in a file that is provided in their request, without referencing the contents of the current workspace. This category does not include generating entire projects.",
-            "examples": [
-              "Add a refresh button to the table widget."
-            ]
+            "examples": ["Add a refresh button to the table widget."]
           },
           {
             "category": "question_about_specific_files",
             "description": "The user has a question about a specific file or code snippet that they have provided as part of their query, and the question does not require additional workspace context to answer.",
-            "examples": [
-              "What does this file do?"
-            ]
+            "examples": ["What does this file do?"]
           }
         ]
       },
@@ -2628,12 +2596,8 @@
         "name": "agent",
         "fullName": "GitHub Copilot",
         "isDefault": true,
-        "locations": [
-          "panel"
-        ],
-        "modes": [
-          "agent"
-        ],
+        "locations": ["panel"],
+        "modes": ["agent"],
         "slashCommands": [
           {
             "name": "compact",
@@ -2650,9 +2614,7 @@
               {
                 "category": "create_tests",
                 "description": "The user wants to generate unit tests.",
-                "examples": [
-                  "Generate tests for my selection using pytest."
-                ]
+                "examples": ["Generate tests for my selection using pytest."]
               }
             ]
           },
@@ -2686,9 +2648,7 @@
               {
                 "category": "create_jupyter_notebook",
                 "description": "The user wants to create a new Jupyter notebook in Visual Studio Code.",
-                "examples": [
-                  "Create a notebook to analyze this CSV file."
-                ]
+                "examples": ["Create a notebook to analyze this CSV file."]
               }
             ]
           },
@@ -2701,9 +2661,7 @@
               {
                 "category": "set_up_tests",
                 "description": "The user wants to configure project test setup, framework, or test runner. The user does not want to fix their existing tests.",
-                "examples": [
-                  "Set up tests for this project."
-                ]
+                "examples": ["Set up tests for this project."]
               }
             ]
           }
