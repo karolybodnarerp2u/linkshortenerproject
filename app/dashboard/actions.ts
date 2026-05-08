@@ -9,7 +9,13 @@ import { revalidatePath } from 'next/cache';
 import { updateLink, deleteLink } from '@/data/links';
 
 const createLinkSchema = z.object({
-  url: z.string().url('Please enter a valid URL'),
+  url: z
+    .string()
+    .url('Please enter a valid URL')
+    .refine(
+      (url) => url.startsWith('http://') || url.startsWith('https://'),
+      'Only http and https URLs are allowed',
+    ),
   shortCode: z
     .string()
     .min(3, 'Short code must be at least 3 characters')
@@ -57,6 +63,9 @@ export async function createLinkAction(
       })
       .returning();
 
+    console.log(
+      `[AUDIT] Link created: userId=${userId} shortCode=${parsed.data.shortCode} id=${newLink[0].id}`,
+    );
     return { success: true, data: { id: newLink[0].id } };
   } catch (error) {
     console.error('Failed to create link:', error);
@@ -66,7 +75,13 @@ export async function createLinkAction(
 
 const updateLinkSchema = z.object({
   id: z.string().min(1),
-  url: z.string().url('Please enter a valid URL'),
+  url: z
+    .string()
+    .url('Please enter a valid URL')
+    .refine(
+      (url) => url.startsWith('http://') || url.startsWith('https://'),
+      'Only http and https URLs are allowed',
+    ),
   shortCode: z
     .string()
     .min(3, 'Short code must be at least 3 characters')
@@ -109,6 +124,9 @@ export async function updateLinkAction(
       shortCode: parsed.data.shortCode,
     });
 
+    console.log(
+      `[AUDIT] Link updated: userId=${userId} id=${parsed.data.id} shortCode=${parsed.data.shortCode}`,
+    );
     revalidatePath('/dashboard');
     return { success: true };
   } catch (error) {
@@ -134,6 +152,7 @@ export async function deleteLinkAction(
 
   try {
     await deleteLink(parsed.data.id, userId);
+    console.log(`[AUDIT] Link deleted: userId=${userId} id=${parsed.data.id}`);
     revalidatePath('/dashboard');
     return { success: true };
   } catch (error) {
