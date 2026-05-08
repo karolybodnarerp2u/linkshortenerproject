@@ -4,7 +4,7 @@
     "postToolUse": [
       {
         "type": "command",
-        "powershell": "cat > tmp/$(Get-Date -Format 'yyyyMMddHHmmss').json"
+        "powershell": "cat > tmp/$(date +%s).json"
       }
     ]
   }
